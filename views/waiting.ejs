@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="row justify-content-center align-items-center">
+        <strong class="text-info">Waiting for next stage...</strong>
+        <div v-for="player in players" class="col-md-auto text-center">
+            <div v-if="player.username == me.username" class="player">
+                <button style="margin-top: 10px" type="button" class="btn btn-lg btn-block btn-danger active">{{player.username}}</button>
+            </div>
+            <div v-else-if="player.state == 1" class="player">
+                <button style="margin-top: 10px" type="button" class="btn btn-lg btn-block btn-info active">{{player.username}}</button>
+            </div>
+            <div v-else class="player">
+                <button style="margin-top: 10px" type="button" class="btn btn-lg btn-block btn-outline-info" disabled>{{player.username}}</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

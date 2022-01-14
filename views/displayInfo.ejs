@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<%- include('header'); -%>
+
+    <div class="container-fluid d-flex h-100 flex-column" id="display"
+        style="margin: 0; height: 100%; position: relative;">
+
+        <div v-if="error" class="alert alert-danger">
+            <strong>Error: </strong> {{error}}
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+            <h2 class="text-center text-danger"><b>QUIPLASH!</b></h2>
+        </div>
+
+        <div class="row flex-grow-1">
+            <div v-if="state.state == 1 || state.state == 0">
+                <h2 class="text-center text-info"><b>Welcome</b></h2>
+            </div>
+            <div v-else-if="state.state == 2 || state.state == 7 || state.state == 12">
+                <h3 class="text-center text-info"><b>Write a funny prompt</b></h3>
+            </div>
+
+            <div v-else-if="state.state == 3 || state.state == 8 || state.state == 13">
+                <h3 class="text-center text-info"><b>Come up with a witty answer</b></h3>
+            </div>
+
+            <div v-else-if="state.state == 4 || state.state == 9 || state.state == 14" class="row">
+                <h3 class="text-center text-info"><i>"{{prompt.prompt}}"</i></h3>
+                <div class="col">
+                    <div class="card bg-danger text-white text-center">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                {{choices.first.answer}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-danger text-white text-center">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                {{choices.second.answer}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-else-if="state.state == 5 || state.state == 10 || state.state == 15" class="row">
+                <h3 class="text-info text-center"><i>"{{prompt.prompt}}"</i></h3>
+                <div class="col">
+                    <div class="card bg-danger text-white text-center">
+                        <div class="card-header">
+                            <button style="margin-top: 10px" type="button"
+                                class="btn btn-sm  btn-info active">{{choices.first.username}} <span
+                                    class="badge badge-light">{{votes.first.score}}</span></button>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                {{choices.first.answer}}
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div v-for="voter in votes.first.voters" class="col-sm">
+                                    <button style="margin-top: 10px" type="button"
+                                        class="btn btn-sm btn-secondary active">{{voter}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-danger text-white text-center">
+                        <div class="card-header">
+                            <button style="margin-top: 10px" type="button"
+                                class="btn btn-sm btn-info active">{{choices.second.username}} <span
+                                    class="badge badge-light">{{votes.second.score}}</span></button>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                {{choices.second.answer}}
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div v-for="voter in votes.second.voters" class="col-sm">
+                                    <button style="margin-top: 10px" type="button"
+                                        class="btn btn-sm btn-secondary active">{{voter}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-else-if="state.state == 6 || state.state == 11 || state.state == 16">
+                <h1 class="text-danger text-center">Scoreboard</h1>
+                <div v-for="score in scores">
+                    <div v-if="score.first == 1"> <button style="margin-top: 10px" type="button"
+                            class="btn btn-lg btn-block btn-warning active">{{score.username}} <span
+                                class="badge badge-light">{{score.score}}</span></button></div>
+                    <div v-else> <button style="margin-top: 10px" type="button"
+                            class="btn btn-lg btn-block btn-primary active">{{score.username}} <span
+                                class="badge badge-light">{{score.score}}</span></button></div>
+
+                </div>
+            </div>
+            <div v-else-if="state.state == 17">
+                <h1 class="text-danger text-center">Game ended</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+            <strong class="text-info">Players</strong>
+            <div v-for="player in players" class="col-md-auto text-center">
+                <div v-if="player.state == 1" class="player">
+                    <button style="margin-top: 10px" type="button"
+                        class="btn btn-lg btn-block btn-info active">{{player.username}}</button>
+                </div>
+                <div v-else="player.state == 0" class="player">
+                    <button style="margin-top: 10px" type="button"
+                        class="btn btn-lg btn-block btn-outline-info" disabled>{{player.username}}</button>
+                </div>
+            </div>
+            <p class="text-info">Spectators</p>
+            <div v-for="spectator in spectators" class="col-md-auto text-center">
+                <div v-if="spectator.state == 1" class="spectator">
+                    <button style="margin-top: 10px" type="button"
+                        class="btn btn-sm btn-block btn-secondary active">{{spectator.username}}</button>
+                </div>
+                <div v-else="spectator.state == 0" class="spectator">
+                    <button style="margin-top: 10px" type="button"
+                        class="btn btn-sm btn-block btn-secondary-info active">{{spectator.username}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>
+
+</div>
+
+<%- include('displayFooter'); -%>
+
+    </html>

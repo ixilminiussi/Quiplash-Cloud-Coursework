@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <div id="input-row" class="row justify-content-center align-items-center" style="margin-top: 20%;">
+        <div id="input-column" class="col-lg">
+            <h3 class="text-center text-primary">{{promptIn.first.prompt}}</h3>
+            <form>
+                <label for="answer" class="text-info">Write a funny response :</label><br>
+                <input v-model="answerOut" type="text" name="answer" class="form-control input-lg" placeholder="A funny response! AHAHAHAHAH">
+            </form>
+            <form style="margin-top: 10px;">
+                <button type="button" class="btn btn-primary" @click="answer(answerOut)">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</html>

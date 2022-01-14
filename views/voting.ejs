@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<div id="input-row" class="row justify-content-center align-items-center" style="margin-top: 5%;">
+    <div id="input-column" class="col-lg">
+        <h3 class="text-center text-info">Vote</h3>
+        <form style="margin-top: 10px;">
+            <button type="button" class="btn btn-lg btn-block btn-primary" @click="vote(0)">{{choices.first.answer}}</button>
+        </form>
+        <form style="margin-top: 10px;">
+            <button type="button" class="btn btn-lg btn-block btn-primary" @click="vote(1)">{{choices.second.answer}}</button>
+        </form>
+    </div>
+</div>
+
+
+</html>

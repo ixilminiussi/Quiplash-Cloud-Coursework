@@ -1,0 +1,32 @@
+{
+  "name": "quiplash",
+  "version": "1.0.0",
+  "description": "ECS Example Game",
+  "main": "app.js",
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "gdeploy": "gcloud app deploy --version test",
+    "hdeploy": "git push heroku master"
+  },
+  "author": "Ixil Miniussi",
+  "license": "ECS",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "jsdom": "^18.1.1",
+    "request": "^2.65.0",
+    "socket.io": "^4.3.1",
+    "webpack": "^5.64.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://ofb-labs.soton.ac.uk:3000/COMP3207/coursework.git"
+  },
+  "keywords": [],
+  "devDependencies": {}
+}
